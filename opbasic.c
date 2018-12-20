@@ -49,11 +49,14 @@ void push(stack_t **stack, unsigned int line_number)
   */
 void pall(stack_t **stack, unsigned int line_number)
 {
+	stack_t *copy;
 	(void) line_number;
-	while (stack != NULL && *stack != NULL)
+
+	copy = *stack;
+	while (copy != NULL)
 	{
-		printf("%d\n", (*stack)->n);
-		*stack = (*stack)->next;
+		printf("%d\n", copy->n);
+		copy = copy->next;
 	}
 }
 

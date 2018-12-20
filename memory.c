@@ -33,6 +33,7 @@ void free_stack(stack_t *head)
 
 	while (head != NULL)
 	{
+		printf("WHYWYWYWYWY\n");
 		tmp = head->next;
 		free(head);
 		head = tmp;
