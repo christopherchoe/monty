@@ -51,7 +51,7 @@ void pchar(stack_t **stack, unsigned int line_number)
 		memory_clear(*stack);
 		exit(EXIT_FAILURE);
 	}
-	if ((*stack)->n < 0 || (*stack)->n > 177)
+	if ((*stack)->n < 0 || (*stack)->n > 127)
 	{
 		dprintf(STDERR_FILENO, "L%d: can't pchar,", line_number);
 		dprintf(STDERR_FILENO, " value out of range\n");
@@ -80,7 +80,7 @@ void pstr(stack_t **stack, unsigned int line_number)
 	copy = *stack;
 	while (copy != NULL && copy->n != 0)
 	{
-		if (copy->n < 0 || copy->n > 177)
+		if (copy->n < 0 || copy->n > 127)
 			break;
 		dprintf(STDOUT_FILENO, "%c", copy->n);
 		copy = copy->next;
