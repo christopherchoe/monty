@@ -104,16 +104,19 @@ void rotl(stack_t **stack, unsigned int line_number)
 	tmp = *stack;
 	copy = *stack;
 
-	if (*stack && (*stack)->next)
+	if (*stack != NULL && (*stack)->next != NULL)
 	{
 		*stack = (*stack)->next;
 		(*stack)->prev = NULL;
 	}
-	while (copy && copy->next != NULL)
+	while (copy != NULL && copy->next != NULL)
 		copy = copy->next;
-	copy->next = tmp;
-	tmp->next = NULL;
-	tmp->prev = copy;
+	if (copy != NULL)
+	{
+		copy->next = tmp;
+		tmp->next = NULL;
+		tmp->prev = copy;
+	}
 }
 
 /**
