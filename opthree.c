@@ -98,28 +98,14 @@ void pstr(stack_t **stack, unsigned int line_number)
   */
 void rotl(stack_t **stack, unsigned int line_number)
 {
-	stack_t *nex, *cur, *pre;
+	stack_t *copy *tmp;
 	(void) line_number;
 
-	pre = NULL;
-	cur = *stack;
-	if (cur != NULL)
-		nex = cur->next;
-	else
-		nex = NULL;
+	copy = *stack;
+	tmp = *stack;
 
-	while (cur != NULL)
-	{
-		cur->prev = nex;
-		cur->next = pre;
-		pre = cur;
-		cur = nex;
-		if (nex != NULL)
-			nex = nex->next;
-	}
-
-	*stack = pre;
-}
+	if (stack == NULL)
+		return;
 
 	if (*stack != NULL && (*stack)->next != NULL)
 	{
@@ -145,6 +131,25 @@ void rotl(stack_t **stack, unsigned int line_number)
   */
 void rotr(stack_t **stack, unsigned int line_number)
 {
-	(void) stack;
+	stack_t *nex, *cur, *pre;
 	(void) line_number;
+
+	pre = NULL;
+	cur = *stack;
+	if (cur != NULL)
+		nex = cur->next;
+	else
+		nex = NULL;
+
+	while (cur != NULL)
+	{
+		cur->prev = nex;
+		cur->next = pre;
+		pre = cur;
+		cur = nex;
+		if (nex != NULL)
+			nex = nex->next;
+	}
+
+	*stack = pre;
 }
