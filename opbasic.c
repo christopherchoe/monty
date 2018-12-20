@@ -77,7 +77,7 @@ void pint(stack_t **stack, unsigned int line_number)
 	}
 	else
 	{
-		printf("%d\n", (*stack)->n);
+		dprintf(STDOUT_FILENO ,"%d\n", (*stack)->n);
 	}
 }
 
