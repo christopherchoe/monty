@@ -35,7 +35,7 @@ int open_file(char *file_name)
 	glo.fp = fopen(file_name, "r");
 	if (glo.fp == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: can't open file %s\n", file_name);
+		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", file_name);
 		exit(EXIT_FAILURE);
 	}
 
@@ -86,6 +86,8 @@ void opcode(stack_t **stack, unsigned int line_no)
 		{"sub", sub},
 		{"div", divi},
 		{"mul", mul},
+		{"mod", mod},
+		{"rotl", rotl},
 		{NULL, NULL}
 	};
 	int i = 0;
