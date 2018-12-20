@@ -55,7 +55,7 @@ void pall(stack_t **stack, unsigned int line_number)
 	copy = *stack;
 	while (copy != NULL)
 	{
-		printf("%d\n", copy->n);
+		dprintf(STDOUT_FILENO, "%d\n", copy->n);
 		copy = copy->next;
 	}
 }
