@@ -23,7 +23,7 @@ void rotr(stack_t **stack, unsigned int line_number)
 	}
 
 	tmp = copy->prev;
-	tmp->next = NULL;
+	tmp->next = copy->next;
 	copy->prev = NULL;
 	copy->next = (*stack)->next;
 	*stack = copy;
