@@ -22,7 +22,7 @@ void push(stack_t **stack, unsigned int line_number)
 	{
 		for (i = 0; *(token + i) != '\0'; i++)
 		{
-			if (*token == '-')
+			if (*token == '-' || *token == '+')
 				continue;
 			if (*(token + i) < 48 || *(token + i) > 57)
 				break;
