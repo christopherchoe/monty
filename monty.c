@@ -88,6 +88,8 @@ void opcode(stack_t **stack, unsigned int line_no)
 		{"mul", mul},
 		{"mod", mod},
 		{"rotl", rotl},
+		{"pchar", pchar},
+		{"pstr", pstr},
 		{NULL, NULL}
 	};
 	int i = 0;
