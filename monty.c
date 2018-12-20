@@ -93,7 +93,7 @@ void opcode(stack_t **stack, unsigned int line_no)
 
 	token = strtok(glo.buffer, " \n\r\t");
 
-	if (token == NULL)
+	if (token == NULL || *token == '#')
 		return;
 
 	while (opcodes[i].opcode != NULL)
