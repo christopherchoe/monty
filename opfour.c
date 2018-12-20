@@ -18,13 +18,12 @@ void rotr(stack_t **stack, unsigned int line_number)
 		return;
 
 	while (copy != NULL && (copy)->next != NULL)
-	{
 		copy = copy->next;
-	}
 
 	tmp = copy->prev;
-	tmp->next = copy->next;
 	copy->prev = NULL;
-	copy->next = (*stack)->next;
+	copy->next = *stack;
+	(*stack)->prev = copy;
+	tmp->next = NULL;
 	*stack = copy;
 }
