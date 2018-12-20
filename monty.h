@@ -88,5 +88,8 @@ void stoq(stack_t **, unsigned int);
 
 /* opfour.c functions */
 void rotr(stack_t **, unsigned int);
+void stac(stack_t **, unsigned int);
+void queue(stack_t **, unsigned int);
+void push_help(stack_t **, stack_t *);
 
 #endif /*_MONTY_H_*/

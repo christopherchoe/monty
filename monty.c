@@ -91,13 +91,14 @@ void opcode(stack_t **stack, unsigned int line_no)
 		{"rotr", rotr},
 		{"pchar", pchar},
 		{"pstr", pstr},
+		{"queue", queue},
+		{"stack", stac},
 		{NULL, NULL}
 	};
 	int i = 0;
 	char *token;
 
 	token = strtok(glo.buffer, " \n\r\t");
-
 	if (token == NULL || *token == '#')
 		return;
 

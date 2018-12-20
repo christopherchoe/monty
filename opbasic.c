@@ -9,15 +9,13 @@
   */
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_element, *tmp;
+	stack_t *new_element;
 	char *token;
 	int i = 0, n;
 
 	if (stack == NULL)
 		return;
-
 	token = strtok(NULL, " \n\r\t");
-
 	if (token != NULL)
 	{
 		for (i = 0; *(token + i) != '\0'; i++)
@@ -34,18 +32,12 @@ void push(stack_t **stack, unsigned int line_number)
 		memory_clear(*stack);
 		exit(EXIT_FAILURE);
 	}
-
 	n = atoi(token);
-
 	new_element = malloc_stack(*stack);
 	new_element->n = n;
 	new_element->prev = NULL;
 
-	tmp = *stack;
-	new_element->next = tmp;
-	*stack = new_element;
-	if (tmp)
-		tmp->prev = *stack;
+	push_help(stack, new_element);
 }
 
 /**
