@@ -4,6 +4,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <unistd.h>
+#include <string.h>
+
+/**
+ * struct global_var - variable to use buffer, file descriptor, and mode
+ * @buffer: buffer to store getline of opcode
+ * @mode: mode to represent stack or queue
+ * @fp: file descriptor for our file
+ *
+ * Descritpion: allows for use and free of certain variables used
+ * in stack, queues, LIFO, FIFO Holberton project
+ */
+struct global_var
+{
+	char *buffer;
+	int mode;
+	FILE *fp;
+};
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -34,5 +52,22 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+/* monty.c functions */
+int open_file(char *);
+unsigned int line_iterate(FILE *, unsigned int);
+void opcode(stack_t **, unsigned int);
+
+/* memory.c functions */
+stack_t *malloc_stack(stack_t *);
+void free_stack(stack_t *);
+void memory_clear(stack_t *);
+
+/* opbasic.c functions */
+void push(stack_t **, unsigned int);
+void pall(stack_t **, unsigned int);
+void pint(stack_t **, unsigned int);
+void pop(stack_t **, unsigned int);
+void nop(stack_t **, unsigned int);
 
 #endif /*_MONTY_H_*/
