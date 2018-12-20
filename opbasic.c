@@ -11,7 +11,7 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_element, *tmp;
 	char *token;
-	int i, n;
+	int i = 0, n;
 
 	if (stack == NULL)
 		return;
@@ -22,6 +22,8 @@ void push(stack_t **stack, unsigned int line_number)
 	{
 		for (i = 0; *(token + i) != '\0'; i++)
 		{
+			if (*token == '-')
+				continue;
 			if (*(token + i) < 48 || *(token + i) > 57)
 				break;
 		}
@@ -84,7 +86,7 @@ void pint(stack_t **stack, unsigned int line_number)
 	}
 	else
 	{
-		dprintf(STDOUT_FILENO ,"%d\n", (*stack)->n);
+		dprintf(STDOUT_FILENO, "%d\n", (*stack)->n);
 	}
 }
 
