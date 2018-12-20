@@ -11,7 +11,7 @@ stack_t *malloc_stack(stack_t *stack)
 	stack_t *element;
 
 	element = malloc(sizeof(stack_t));
-	if (malloc == NULL)
+	if (element == NULL)
 	{
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
 		memory_clear(stack);
