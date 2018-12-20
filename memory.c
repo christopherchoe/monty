@@ -11,7 +11,7 @@ stack_t *malloc_stack(stack_t *stack)
 	stack_t *element;
 
 	element = malloc(sizeof(stack_t));
-	if (element == NULL)
+	if (malloc == NULL)
 	{
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
 		memory_clear(stack);
@@ -47,8 +47,6 @@ void free_stack(stack_t *head)
   */
 void memory_clear(stack_t *stack)
 {
-	extern struct global_var glo;
-
 	free_stack(stack);
 	if (glo.buffer)
 		free(glo.buffer);

@@ -9,19 +9,35 @@
   */
 void push(stack_t **stack, unsigned int line_number)
 {
-	/*stack_t *new_element, *tmp;*/
+	stack_t *new_element, *tmp;
+	char *token;
+	int i, n;
 
-	(void) stack;
-	(void) line_number;
+	token = strtok(NULL, " \n\r\t");
 
-	/* TODO check if the next token is integer */
+	for (i = 0; *(token + i) != '\0'; i++)
+	{
+		if (*(token + i) < 48 || *(token + i) > 57)
+			break;
+	}
+	if (token == NULL || *(token + i) != '\0')
+	{
+		dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
+		memory_clear(*stack);
+		exit(EXIT_FAILURE);
+	}
 
-	/* TODO atoi the integer */
+	n = atoi(token);
 
-	/* TODO add element to stack */
+	new_element = malloc_stack(*stack);
+	new_element->n = n;
+	new_element->prev = NULL;
 
-	/* new_element = malloc_stack();
-	new_element->n = */
+	tmp = *stack;
+	new_element->next = tmp;
+	*stack = new_element;
+	if (tmp)
+		tmp->prev = *stack;
 }
 
 /**
@@ -48,10 +64,19 @@ void pall(stack_t **stack, unsigned int line_number)
   * @line_number: the line number of the opcode
   * Return: void
   */
-/*void pint(stack_t **stack, unsigned int line_number)
+void pint(stack_t **stack, unsigned int line_number)
 {
-	printf("%d\n", (*stack)->n);
-}*/
+	if (*stack == NULL)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't pint, stack empty\n", line_number);
+		memory_clear(*stack);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		printf("%d\n", (*stack)->n);
+	}
+}
 
 /**
   * pop -

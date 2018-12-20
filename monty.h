@@ -23,6 +23,8 @@ struct global_var
 	FILE *fp;
 };
 
+extern struct global_var glo;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -55,7 +57,7 @@ typedef struct instruction_s
 
 /* monty.c functions */
 int open_file(char *);
-unsigned int line_iterate(FILE *, unsigned int);
+unsigned int line_iterate(unsigned int);
 void opcode(stack_t **, unsigned int);
 
 /* memory.c functions */

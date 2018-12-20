@@ -26,7 +26,7 @@ int main(int argc, char **argv)
   * open_file - opens the file and feeds it into the command function
   *
   * @file_name: file name that was given
-  * Return: int TODO add cases
+  * Return: 0 on success, exit on failure
   */
 int open_file(char *file_name)
 {
@@ -39,7 +39,7 @@ int open_file(char *file_name)
 		exit(EXIT_FAILURE);
 	}
 
-	line_no = line_iterate(glo.fp, line_no);
+	line_no = line_iterate(line_no);
 
 	return (0);
 }
@@ -47,15 +47,15 @@ int open_file(char *file_name)
 /**
   * line_iterate - iterates through lines for commands
   *
-  * @fp: file descriptor to get opcodes from
-  * Return: TODO
+  * @line_no: line number
+  * Return: line number where function ends
   */
-unsigned int line_iterate(FILE *fp, unsigned int line_no)
+unsigned int line_iterate(unsigned int line_no)
 {
 	stack_t *stack = NULL;
 	size_t bufsize;
 
-	while (getline(&glo.buffer, &bufsize, fp) != -1)
+	while (getline(&glo.buffer, &bufsize, glo.fp) != -1)
 	{
 		line_no++;
 		opcode(&stack, line_no);
@@ -69,8 +69,9 @@ unsigned int line_iterate(FILE *fp, unsigned int line_no)
 /**
   * opcode - searches and runs possible opcode commands
   *
-  * @command: input command
-  * Return: 0 on success, 1 on failure
+  * @stack: first element of stack
+  * @line_no: line number
+  * Return: void
   */
 void opcode(stack_t **stack, unsigned int line_no)
 {
@@ -87,9 +88,12 @@ void opcode(stack_t **stack, unsigned int line_no)
 	int i = 0;
 	char *token;
 
-	token = strtok(glo.buffer, " \n\r");
+	token = strtok(glo.buffer, " \n\r\t");
 
-	while (token && opcodes[i].opcode != NULL)
+	if (token == NULL)
+		return;
+
+	while (opcodes[i].opcode != NULL)
 	{
 		if (strcmp(opcodes[i].opcode, token) == 0)
 			break;
@@ -97,7 +101,7 @@ void opcode(stack_t **stack, unsigned int line_no)
 	}
 	if (opcodes[i].opcode == NULL)
 	{
-		dprintf(STDERR_FILENO ,"L%d: unknown instruction %s\n", line_no, token);
+		dprintf(STDERR_FILENO, "L%d: unknown instruction %s\n", line_no, token);
 		memory_clear(*stack);
 		exit(EXIT_FAILURE);
 	}
