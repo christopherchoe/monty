@@ -13,12 +13,18 @@ void push(stack_t **stack, unsigned int line_number)
 	char *token;
 	int i, n;
 
+	if (stack == NULL)
+		return;
+
 	token = strtok(NULL, " \n\r\t");
 
-	for (i = 0; *(token + i) != '\0'; i++)
+	if (token != NULL)
 	{
-		if (*(token + i) < 48 || *(token + i) > 57)
-			break;
+		for (i = 0; *(token + i) != '\0'; i++)
+		{
+			if (*(token + i) < 48 || *(token + i) > 57)
+				break;
+		}
 	}
 	if (token == NULL || *(token + i) != '\0')
 	{
@@ -52,7 +58,8 @@ void pall(stack_t **stack, unsigned int line_number)
 	stack_t *copy;
 	(void) line_number;
 
-	copy = *stack;
+	if (stack)
+		copy = *stack;
 	while (copy != NULL)
 	{
 		dprintf(STDOUT_FILENO, "%d\n", copy->n);
@@ -82,16 +89,32 @@ void pint(stack_t **stack, unsigned int line_number)
 }
 
 /**
-  * pop -
+  * pop - pops off the first element of the stack
   *
   * @stack: first element of stack
   * @line_number: the line number of the opcode
   * Return: void
   */
-/*void pop(stack_t **stack, unsigned int line_number)
+void pop(stack_t **stack, unsigned int line_number)
 {
+	stack_t *tmp;
 
-}*/
+	if (stack == NULL)
+		return;
+
+	if (*stack == NULL)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n", line_number);
+		memory_clear(*stack);
+		exit(EXIT_FAILURE);
+	}
+
+	tmp = (*stack)->next;
+	free(*stack);
+	if (tmp)
+		tmp->prev = NULL;
+	*stack = tmp;
+}
 
 /**
   * nop - does nothing
