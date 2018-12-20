@@ -123,13 +123,13 @@ void rotl(stack_t **stack, unsigned int line_number)
 }
 
 /**
-  * rotr - rotates the stack to the bottom
+  * stoq - rotates the stack to the bottom
   *
   * @stack: first element of the stack
   * @line_number: current line number
   * Return: void
   */
-void rotr(stack_t **stack, unsigned int line_number)
+void stoq(stack_t **stack, unsigned int line_number)
 {
 	stack_t *nex, *cur, *pre;
 	(void) line_number;
