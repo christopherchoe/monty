@@ -81,7 +81,7 @@ void opcode(stack_t **stack, unsigned int line_no)
 		{"pint", pint},
 		{"pop", pop},
 		/*{"swap", swap},*/
-		/*{"add", add},*/
+		{"add", add},
 		{"nop", nop},
 		{NULL, NULL}
 	};
