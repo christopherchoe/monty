@@ -98,7 +98,7 @@ void pstr(stack_t **stack, unsigned int line_number)
   */
 void rotl(stack_t **stack, unsigned int line_number)
 {
-	stack_t *copy *tmp;
+	stack_t *copy, *tmp;
 	(void) line_number;
 
 	copy = *stack;
